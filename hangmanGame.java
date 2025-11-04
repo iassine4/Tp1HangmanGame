@@ -1,13 +1,14 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.HashSet;
 
 public class hangmanGame {
 
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
-		ArrayList<Character> guessedLetters = new ArrayList<Character>();
+		HashSet<Character> guessedLetters = new HashSet<Character>();
 		
 		String[] wrdList = { "lettre", "java", "code", "console", "ordinateur"};
 		
@@ -86,7 +87,7 @@ public class hangmanGame {
         return sb.toString();
     }
 	
-	public static void displayListOfLetters(ArrayList<Character> guessedLetters, char letter) {
+	public static void displayListOfLetters(HashSet<Character> guessedLetters, char letter) {
 		guessedLetters.add(letter);
 
 		System.out.print("Lettres proposées : ");
