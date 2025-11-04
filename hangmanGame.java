@@ -1,13 +1,15 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class hangmanGame {
 
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
+		ArrayList<Character> guessedLetters = new ArrayList<Character>();
 		
-		String[] wrdList = { "lettre", "java", "code", "console"};
+		String[] wrdList = { "lettre", "java", "code", "console", "ordinateur"};
 		
 		Random rand = new Random();
 		String wrdChoice = wrdList[rand.nextInt(wrdList.length)];
@@ -25,6 +27,7 @@ public class hangmanGame {
         while (errors < MAX_ERRORS && hiddenWrd.contains("_")) {
             System.out.println("\nMot actuel : " + hiddenWrd);
             System.out.print("Proposez une lettre : ");
+            
             String guess = input.next().toLowerCase();
             
             // Vérifier que la saisie est bien UNE seule lettre
@@ -35,6 +38,8 @@ public class hangmanGame {
             
             
             char letter = guess.charAt(0);
+            
+
 
             // Vérifier si la lettre est présente dans le mot
             if (wrdChoice.indexOf(letter) >= 0) {
@@ -45,6 +50,7 @@ public class hangmanGame {
                 System.out.println(" Mauvaise lettre ! Il vous reste " + (MAX_ERRORS - errors) + " essais.");
             }
             
+            displayListOfLetters(guessedLetters, letter);
          
         }
         // Fin de partie
@@ -79,4 +85,14 @@ public class hangmanGame {
         }
         return sb.toString();
     }
+	
+	public static void displayListOfLetters(ArrayList<Character> guessedLetters, char letter) {
+		guessedLetters.add(letter);
+
+		System.out.print("Lettres proposées : ");
+			for ( char c : guessedLetters) {
+				System.out.print(c +" ");
+			}
+		System.out.println(); // saut de ligne
+	}
 }
